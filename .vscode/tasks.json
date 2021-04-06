@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run all tests",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "test"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run a package's tests",
+            "type": "shell",
+            "command": "npm",
+            "options": {
+                "cwd": "${workspaceFolder}/packages/${input:Package}"
+            },
+            "args": [
+                "test"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "Package",
+            "description": "Package to use",
+            "type": "pickString",
+            "options": [
+                "istanbul-lib-coverage"
+            ]
+        }
+    ],
+    "presentation": {
+        "clear": true
+    }
+}

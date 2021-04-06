@@ -79,6 +79,13 @@ class FileCoverage {
     }
 
     /**
+     * returns
+     */
+    getCoverageForFunction(functionIndex) {
+        return 
+    }
+
+    /**
      * returns computed line coverage from statement coverage.
      * This is a map of hits keyed by line number in the source.
      */

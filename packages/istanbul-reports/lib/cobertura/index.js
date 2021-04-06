@@ -62,7 +62,8 @@ class CoberturaReport extends ReportBase {
         this.xml.openTag('package', {
             name: escape(asJavaPackage(node)),
             'line-rate': metrics.lines.pct / 100.0,
-            'branch-rate': metrics.branches.pct / 100.0
+            'branch-rate': metrics.branches.pct / 100.0,
+            complexity: '0'
         });
         this.xml.openTag('classes');
     }
@@ -84,7 +85,8 @@ class CoberturaReport extends ReportBase {
             name: escape(asClassName(node)),
             filename: path.relative(this.projectRoot, fileCoverage.path),
             'line-rate': metrics.lines.pct / 100.0,
-            'branch-rate': metrics.branches.pct / 100.0
+            'branch-rate': metrics.branches.pct / 100.0,
+            complexity: '0'
         });
 
         this.xml.openTag('methods');
@@ -93,8 +95,10 @@ class CoberturaReport extends ReportBase {
             const hits = fileCoverage.f[k];
             this.xml.openTag('method', {
                 name: escape(name),
-                hits,
-                signature: '()V' //fake out a no-args void return
+                signature: '()V', //fake out a no-args void return,
+                complexity: '0',
+                'line-rate': metrics.lines.pct / 100.0,
+                'branch-rate': metrics.branches.pct / 100.0
             });
             this.xml.openTag('lines');
             //Add the function definition line and hits so that jenkins cobertura plugin records method hits

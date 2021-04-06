@@ -476,4 +476,30 @@ describe('base coverage', () => {
             bcby
         );
     });
+
+    it('returns coverage for a function', () => {
+        const c = new FileCoverage({
+            path: '/path/to/file',
+            statementMap: {},
+            fnMap: {
+                1: {
+                    start: { line: 1, column: 1 },
+                    end: { line: 1, column: 100 }
+                },
+                2: {
+                    start: { line: 1, column: 101 },
+                    end: { line: 1, column: 200 }
+                },
+                3: {
+                    start: { line: 2, column: 1 },
+                    end: { line: 2, column: 100 }
+                }
+            },
+            branchMap: {},
+            s: {},
+            b: {},
+            f: { 1: 1, 2: 2 }
+        });
+        assert.deepEqual({}, c.getCoverageForFunction('1'));
+    });
 });
